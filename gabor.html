@@ -2,12 +2,20 @@
 
 <html>
 	<head>
-		<title>Generic Page - Massively by HTML5 UP</title>
+		<title>Gabor filter</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
+
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" async
+			src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
+		</script>
+
+</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -32,20 +40,48 @@
 
 				<!-- Main -->
 					<div id="main">
+						<ol>
+							<li><b>1-D Gabor Filter Function</b> </li>
 
-						<!-- Post -->
-							<section class="post">
+							Mathematically, Gabor function is a composite form of a Gaussian kernel and a sinusoidal wave.
+							For 1-D signal $x$, Gabor function is:
+							
+							\begin{equation} \label{eqn1}
+							\begin{split}
+							g(x) &=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\bigg(\frac{-x^2}{2\sigma^2}\bigg)\cos(2\pi\omega x);\\
+							& =g_1(x)\cos(2\pi\omega x).
+							\end{split}
+							\end{equation}
+							where $g_1(x)$ is the Gaussian kernel , $\omega$ is the center frequency, i.e., the frequency 
+							at which the filter has largest response and $\sigma$ is the spread of Gaussian kernel.
+
+							
+							<li> <b>2-D Gabor Filter Function</b></li>
+							A symmetrical Gabor filter can be defined as,
+							\begin{equation}\label{eqn2}
+							 g_\lambda,_\theta,_\gamma,_\sigma,_\psi(x,y)=\exp\bigg(-\frac{x'^2+\gamma^2 y'^2}{2\sigma^2}\bigg)\cos\bigg(2\pi\frac{x'}{\lambda}+\psi\bigg);  
+						 \end{equation}
+							\textit{where,}
+							$$x'=x\cos\theta+y\sin\theta ;$$
+							$$y'=y\cos\theta-x\sin\theta.$$ \par
+							
+							 where $\big(x,y)$ is the coordinate system in the spatial domain, 
+							 the parameter $\sigma$ is the standard deviation of the  Gaussian envelope,
+						 $\psi$ is the phase offset of the cosine, $\theta$ is the orientation, 
+							$\gamma$ is the aspect ratio, $\lambda$ is the wavelength of the  sinusoidal wave.
+							 A 2-D Gabor filter is shown in figure
+							<div   ><img src="gabor_images/2dgaborfinal3.png"    /></div>
+							
+
+							<li> <b>Parameters of a 2-D Gabor filter</b></li>
+						</ol> 
+						
+						
+							
 								
-									
-			                            <section>
-										<h3>Gabor fucntion</h3>
-										<p>G(x)=</p>
-									  </section>
+							
 								
-								<div class="image main"><img src="gabor_images/2dgaborfinal3.png" alt="" /></div>
-								<p>Description of the gabor function and the parameters</p>
-								
-							</section>
+							
 
 					</div>
 
@@ -67,11 +103,10 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 
-
-
-
-		
 	</body>
 </html>
