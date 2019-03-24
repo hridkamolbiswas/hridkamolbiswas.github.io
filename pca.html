@@ -2,113 +2,98 @@
 
 <html>
 	<head>
-		<title>Hridkamo Biswas</title>
+		<title>Gabor filter</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body >
+
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" async
+			src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
+		</script>
+
+
+<style>
+	* {
+	  box-sizing: border-box;
+	}
+	
+	.column {
+	  float: left;
+	  width: 33.33%;
+	  padding: 5px;
+	}
+	
+	/* Clearfix (clear floats) */
+	.row::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+	</style>
+
+</head>
+	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+		<div id="wrapper">
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>My Portfolio</h1>
-						
-						
-					</div>
+			<!-- Header -->
+			<header id="header">
+				<a href="index.html" ></a>
+			</header>
 
-				
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Homepage</a></li>
-							<li><a href="about_me.html">About me</a></li>
-							
-						</ul>
-						<ul class="icons">
-		
-							<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+			<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">HOME</a></li>
+						
+					</ul>
+					<ul class="icons">
+						
+						<li><a href="https://github.com/hridkamolbiswas" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
 
 				<!-- Main -->
 					<div id="main">
+							<p>In this section, we will discuss about the gabor function, gabor filters and an possible
+									application of the gabor filters.
+								</p>
+						<ol>
+							<li ><h3>1-D Gabor Filter Function</h3> </li>
 
+							Mathematically, Gabor function is a composite form of a Gaussian kernel and a sinusoidal wave.
+							For 1-D signal $x$, Gabor function is:
+							<div class="image fit">
+							\begin{equation} \label{eqn1}
+							\begin{split}
+							g(x) &=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\bigg(\frac{-x^2}{2\sigma^2}\bigg)\cos(2\pi\omega x);\\
+							& =g_1(x)\cos(2\pi\omega x).
+							\end{split}
+							\end{equation}
+						     </div>
+							where $g_1(x)$ is the Gaussian kernel , $\omega$ is the center frequency, i.e., the frequency 
+							at which the filter has largest response and $\sigma$ is the spread of Gaussian kernel.
 
+							<h5>Graphical illustration:</h3>
+								<p>Graphical illustration of 1-D Gabor function (c) is the composite form of
+									figure (a) and figure (b)</p>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										
-										<h2><a href="gabor.html">Project 1: Forgery painting detection using the Gabor filter bank</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="gabor_images/Gabor Filter Bank.png" alt="" /></a>
-									<p>In this section, we will discuss about the gabor function, gabor filters and an possible
-										application of the gabor filters.
-									</p>
-									<ul class="actions special">
-										<li><a href="gabor.html" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="#">Project 2: Principal component analysis</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="pca.html" class="button">Full Story</a></li>
-									</ul>
-								</article>
-
-								<article>
-									<header>
-										
-										<h2><a href="#">Project 3: Independent component analysis</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-
-								<article>
-									<header>
-										
-										<h2><a href="#">Project 4: Autoencoders</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								
-								
-								<div><img src="gabor_images/2dgaborfinal3.png"    /></div>
-								
-							</section>
-							<div><img src="gabor_images/2dgaborfinal3.png"    /></div>
-
-
-
-							<article>
-									<header>
-										
-										<h2><a href="#">fix frames</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
+								<div class="row">
+									<div class="column">
+									  <img src="gabor_images/gauss.png" alt="Snow" style="width:100%">
+									</div>
+									<div class="column">
+									  <img src="gabor_images/cosine.png" alt="Forest" style="width:100%">
+									</div>
+									<div class="column">
+									  <img src="gabor_images/gabor_1d.png" alt="Mountains" style="width:100%">
+									</div>
+								  </div>
 
 
 
@@ -122,44 +107,60 @@
 
 
 
-							<article>
-									<img class="image fit" src="gabor_images/2dgaborfinal3.png"    />
-							</article>
-						
-					<footer id="footer">
-						
-						<section class="split contact">
+
+
+
+							<li> <b>2-D Gabor Filter Function</b></li>
+							A symmetrical Gabor filter can be defined as,
+							\begin{equation}\label{eqn2}
+							 g_\lambda,_\theta,_\gamma,_\sigma,_\psi(x,y)=\exp\bigg(-\frac{x'^2+\gamma^2 y'^2}{2\sigma^2}\bigg)\cos\bigg(2\pi\frac{x'}{\lambda}+\psi\bigg);  
+						 \end{equation}
+							where,
+							$$x'=x\cos\theta+y\sin\theta ;$$
+							$$y'=y\cos\theta-x\sin\theta.$$ 
 							
+							 where $\big(x,y)$ is the coordinate system in the spatial domain, 
+							 the parameter $\sigma$ is the standard deviation of the  Gaussian envelope,
+						 $\psi$ is the phase offset of the cosine, $\theta$ is the orientation, 
+							$\gamma$ is the aspect ratio, $\lambda$ is the wavelength of the  sinusoidal wave.
+							 A 2-D Gabor filter is shown in figure
+							<div class="image fit"  ><img src="gabor_images/2dgaborfinal3.png"    /></div>
 							
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">hrid.bis@outlook.com</a></p>
-							</section>
-							<section>
-								<h3>Online Platform</h3>
-								<ul class="icons alt">
-									
-									<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+
+							<li> <b>Parameters of a 2-D Gabor filter</b></li>
+						</ol> 
+						
+						
+							
+								
+							
+								
+							
+
+					</div>
+
+				
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul><li>&copy; hridbiswas</li></ul>
 					</div>
 
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 
 	</body>
 </html>
