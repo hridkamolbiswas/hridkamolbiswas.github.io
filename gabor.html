@@ -133,21 +133,73 @@
 
 
 
-							<li> <b>Forgery detection of Van Gogh's painting using the gabor filter bank</b></li>
-  
-   
-							<div class="image fit"  ><img src="gabor_images/untitled.png"  width="400"   /></div>
-							<h5>Workflow</h5>
-							<div class="image fit"  ><img src="gabor_images/pipeline_for_fe.PNG" width="400"/></div>
+							<li> <h3>Forgery detection of Van Gogh's painting using the gabor filter bank</h3></li>
+There is two paintings from van gogh's are shown, the left one is the real painting of him, and 
+right one is the fake painting. vgdb_2016 (<a href="https://github.com/gfolego/vangogh">download here</a>) 
+containts the images of real and fake van gogh's paintings.
+  <div class="image fit" ><img src="gabor_images/untitled.png" height="500"  width="800"   /></div>
 
-                             <h5>Convolution and energy:: Features extraction</h5>
+							<h3>Workflow</h3>
+This work is inspired by the IEEE magazine <br/>
+								 C. Richard Johnson, Jr., Ella Hendriks, Igor J. Berezhnoy,
+								 Eugene Brevdo, Shannon M. Hughes, Ingrid Daubechies, Jia Li,
+								 Eric Postma, and James Z. Wang, "Image processing for artist
+								 identification," <br/>
+								 The workflow is shown in the figure below: <br/>
+								 
+							
+							<div class="image fit"  ><img src="gabor_images/pipeline_for_fe.PNG" height="500" width="400"/></div>
 
-							 <h5>Performance </h5>
-							<div class="image fit"  ><img src="gabor_images/f1_Score.PNG" width="200"   /></div>
+							 <h5>Convolution and energy:: Features extraction</h5>
+							 
+
+							 The result of filtering an image with a Gabor wavelet is obtained by  2-D convolutional operation. 
+							 If $I(x,y)$ represents image, $ G(x,y,\theta,\lambda)$ represents filter response
+							  (here  $G(x,y,\theta,\lambda,\sigma,\psi,\gamma)$ depends on Gabor parameters $\theta$ and 
+							   $\lambda$ because we are varying the values of $\lambda$ and $\theta$ and keeping others 
+							   parameters fixed) then,
+							 \begin{equation}\label{eqn3}
+							  G(x,y,\theta,\lambda)=\int\int I(p,q)g(x-p,y-q)dpdq ;     
+							 \end{equation}
+
+							 An image is sequentially filtered with a set of Gabor filters for different values of orientations and wavelengths. Each resulting Gabor energy is taken as an feature for each and every filter. Gabor energy is defined as the squared root of filtered pixel values.
+
+
+
+							 <h3>Performance </h3>
+							 $f_1$ Score is a good measure to evaluate the performance of a clasification model.<br/>
+
+
+							 <b>True Positives (TP)</b> = number of samples from the positive class classified correctly as the positive class <br/>
+							 <b>False Negatives (FN)</b> = number of samples belonging to positive class misclassified as the negative class. <br/>
+							 <b>False Positives (FP)</b> = number of samples belonging to negative class misclassified as the positive class. <br/>
+							 <b>True Negatives (TN)</b> = number of samples belonging to the negative class correctly classified as the negative class.<br/>
+							 
+
+							 
+								 \begin{equation}
+								 Precision = \frac{TP}{TP + FP}
+								 \end{equation} 
+ 
+								 \begin{equation}
+								 Recall = \frac{TP}{TP + FN}
+								 
+								 \end{equation} 
 
 
 
 
+							$F_1$ score is the harmonic mean of Precision and Recall given by,<br/>
+								\begin{equation}
+								F = \frac{2 . Precision . Recall}{(Precision + Recall)}
+								\label{f1}
+								\end{equation} 
+
+							<div class="image fit"  ><img src="gabor_images/f1_Score.PNG" height="500" width="100"   /></div>
+
+
+						 Figure shows the $f_1$ score for keeping different principal components. To learn more about the 
+						 Principal compoents see Page <a href="pca.html">PCA explanation</a>
 
 
 

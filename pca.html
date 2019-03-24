@@ -15,25 +15,20 @@
 			src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
 		</script>
 
-
 <style>
-	* {
-	  box-sizing: border-box;
+	.responsive {
+	  width: 50%;
+	  height: auto;
 	}
-	
-	.column {
-	  float: left;
-	  width: 33.33%;
-	  padding: 5px;
-	}
-	
-	/* Clearfix (clear floats) */
-	.row::after {
-	  content: "";
-	  clear: both;
-	  display: table;
-	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 	</style>
+
 
 </head>
 	<body class="is-preload">
@@ -60,82 +55,19 @@
 
 				<!-- Main -->
 					<div id="main">
-							<p>In this section, we will discuss about the gabor function, gabor filters and an possible
-									application of the gabor filters.
-								</p>
-						<ol>
-							<li ><h3>1-D Gabor Filter Function</h3> </li>
-
-							Mathematically, Gabor function is a composite form of a Gaussian kernel and a sinusoidal wave.
-							For 1-D signal $x$, Gabor function is:
-							<div class="image fit">
-							\begin{equation} \label{eqn1}
-							\begin{split}
-							g(x) &=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\bigg(\frac{-x^2}{2\sigma^2}\bigg)\cos(2\pi\omega x);\\
-							& =g_1(x)\cos(2\pi\omega x).
-							\end{split}
-							\end{equation}
-						     </div>
-							where $g_1(x)$ is the Gaussian kernel , $\omega$ is the center frequency, i.e., the frequency 
-							at which the filter has largest response and $\sigma$ is the spread of Gaussian kernel.
-
-							<h5>Graphical illustration:</h3>
-								<p>Graphical illustration of 1-D Gabor function (c) is the composite form of
-									figure (a) and figure (b)</p>
-
-								<div class="row">
-									<div class="column">
-									  <img src="gabor_images/gauss.png" alt="Snow" style="width:100%">
-									</div>
-									<div class="column">
-									  <img src="gabor_images/cosine.png" alt="Forest" style="width:100%">
-									</div>
-									<div class="column">
-									  <img src="gabor_images/gabor_1d.png" alt="Mountains" style="width:100%">
-									</div>
-								  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<li> <b>2-D Gabor Filter Function</b></li>
-							A symmetrical Gabor filter can be defined as,
-							\begin{equation}\label{eqn2}
-							 g_\lambda,_\theta,_\gamma,_\sigma,_\psi(x,y)=\exp\bigg(-\frac{x'^2+\gamma^2 y'^2}{2\sigma^2}\bigg)\cos\bigg(2\pi\frac{x'}{\lambda}+\psi\bigg);  
-						 \end{equation}
-							where,
-							$$x'=x\cos\theta+y\sin\theta ;$$
-							$$y'=y\cos\theta-x\sin\theta.$$ 
-							
-							 where $\big(x,y)$ is the coordinate system in the spatial domain, 
-							 the parameter $\sigma$ is the standard deviation of the  Gaussian envelope,
-						 $\psi$ is the phase offset of the cosine, $\theta$ is the orientation, 
-							$\gamma$ is the aspect ratio, $\lambda$ is the wavelength of the  sinusoidal wave.
-							 A 2-D Gabor filter is shown in figure
-							<div class="image fit"  ><img src="gabor_images/2dgaborfinal3.png"    /></div>
+					<h3>Principal Component Analysis (PCA)-dimensionality reduction algorithm</h3>
+					<ol>PCA is very popolar dimensionalty reduction algorithm, it is very much used in data 
+							science, image processing,computer vision etc.
+				
+					<div align="center"><img src="pca_images/PCA_3.png" class="responsive" width="400" height="300"></div>	
 							
 
-							<li> <b>Parameters of a 2-D Gabor filter</b></li>
+
+				
+
+
 						</ol> 
-						
-						
-							
-								
-							
-								
-							
+
 
 					</div>
 
