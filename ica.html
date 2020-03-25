@@ -56,7 +56,7 @@
 
 				<!-- Main -->
 					<div id="main">
-                    <h3>Independent component analysis</h3>
+                    <h1>Independent component analysis</h1>
                 <ol>
                     <li><h2>Introduction</h2></li>
 					In the Independent Component Analysis (ICA), we observe $n$ scalar random variables $x_1,x_2,x_3,.....,x_n$, which are assumed to be a linear combination  of $m (m\leq n)$ independent components (IC's) $s_1,s_2,s_3,.....,s_m$. The IC's are mutually statistically independent (i.e. one variable does not give any information about the other variables), and zero mean.
@@ -143,11 +143,127 @@
                     $$\mathbf{s}=W^T\mathbf{x}$$
                     The columns of the unmixing matrix $W$ are the weight vectors, i.e., the direction of the independent components..
 
-                    The summary of the ICA algorithm is presented in this section. Suppose we have a data matrix $X \in \mathbb{R}^{n\times P}$, where each column of the data matrix $X$ represents a $n$-dimensional sample vector. We desire to extract $C$ numbers of independent components , where $C\leq n$. The task is to find the un-mixing matrix $W \in \mathbb{R}^{n\times C}$ onto which the observed data matrix $X$ is projected to obtain the independent component matrix $S \in \mathbb{R}^{C\times P}$.
+                    <li>
+                        <h2>Maximization of non-gaussianity</h2>
+                    </li>
+                The Central Limit Theorem (CLT) tells us, if we add two or more independent random variables, then the sum will likely be the normal distribution. In contrast, the maximization of non-gaussianity of $\mathbf{s}=W^T\mathbf{x}$ will give the independent component.
+                Kurtosis and Neg-entropy are the two widely used measures of the non-gaussianity.
+                <h4>Kurtosis</h4>
+                Kurtosis is a measure of non-gaussianity. In other words, it is a descriptor of  the shape of the tail of the probability distribution (see Figure). Kurtosis of a random variable $y$, is defined by:
+                $$kurt(y)=E[y^4]-3(E[y^2])^2.$$
+                Kurtosis $(kurt(y))$ for a normal distribution is zero. If $kurt(y)>0$, then the shape of  the distribution is super-gaussian (long tail) and if $ kurt(y) < 0$ , then the shape of the distribution is sub-gaussian (short tail). 
+                <div align ="center"><img src="ICA_images/kurtosis.png" class="responsive" width="400" height="300">
+                <figcaption>Figure : Visualization of the Gaussian, Super-Gaussian, Sub-Gaussian distribution. The super-gaussian distribution has long tail shape, and the sub-gaussian distribution has short tail shape.</figcaption></div>
+
+                <h4>Neg-entropy</h4>
+                The entropy of a random variable can be interpreted as  a degree of information that the observation of the variable gives. Entropy$(H)$ of a random variable $y$ with density $f(.)$ is defined as:
+                $$H(y)=-\int_{}^{} f(y)\log f(y) dy$$
+                Gaussian random variable has the largest entropy among all the random variables of equal variance \cite{neg_entropy}, which implies that the entropy can be used to measure non-gaussianity. To obtain a measure of non-gaussianity that is zero for the gaussian distribution and always non-negative, the entropy equation is modified and it is called as Neg-entropy (J(y)).
+                $$ J(y)=H(y)_{gauss}- H(y)$$
+
+                <li><h2>Approximation of the Neg-entropy and estimating one Independent Component</h2></li>
+
+                The new approximation of the Neg-entropy is given by:
+                    $$
+                    J(y) \propto [E\{G(y)\}-E\{G(v)\}]^2 
+                    $$Where $G$ is a non-quadratic function, $v$ is a gaussian variable of zero mean and unit variance, and $E\{.\}$ 
+                    refers to the expected value. In \cite{hrid_4}, it is shown that this approximation is better than the cumulant based approximation,
+                     because it is less sensitive to the outliers. \par
+                    Consider a weight vector $\mathbf{w}$ and the linear combination of $\mathbf{x}$ is $\mathbf{w^Tx}.$
+                    So, the approximation of the Neg-entropy equation can be written as:
+                    \begin{equation}
+                    J(\mathbf{w}^T\mathbf{x})=[E\{G(\mathbf{w}^T\mathbf{x})\}-E\{G(v)\}]^2  
+                    \label{non_quadratic}
+                    \end{equation}
+                    We maximize the Neg-entropy with the constraint $E[(\mathbf{w}^T\mathbf{x})^2]=||\mathbf{w}||^2=1$.\par
+
+                    This optimization problem can be solved using the Lagrange multiplier method, which is a method of optimizing a
+                     function subject to given constraint(s). According to the Lagrange multiplier method Equation \ref{non_quadratic} can be solved as follows:
+                    \begin{align*}
+                        L(\mathbf{w};\lambda) &= J(\mathbf{w}^T\mathbf{x})-\lambda(\mathbf{w}-1), \\
+                        \frac{\partial L(\mathbf{w};\lambda) }{\partial \mathbf{w}}&=0,\\
+                        E\{\mathbf{x}g(\mathbf{x}^T\mathbf{x})\}-\lambda \mathbf{w} &= 0. \\
+                    \end{align*}
+                    Where $\lambda$ is called the  Lagrange coefficient and $g$ is the first derivative of the
+                     non-quadratic function $G$. Let $E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-\lambda \mathbf{w} = F(\mathbf{w})$,
+                      then $F(\mathbf{w})=0$ can be solved easily using the Newton-Rapson method as follows:
+                    \begin{equation*} \label{eq_11}
+                    \begin{split}
+                    \frac{\partial F(\mathbf{w}) }{\partial \mathbf{w}} & = E\{\mathbf{x}g'(\mathbf{w}^T\mathbf{x})\mathbf{x}^T\}-\lambda I, \\
+                    & = E\{\mathbf{xx}^Tg'(\mathbf{w}^T\mathbf{x})\}-\lambda I,\\
+                    since \, E[\mathbf{xx}^T]&=I,\\  \frac{\partial F(\mathbf{w}) }{\partial \mathbf{w}} & =E\{g'(\mathbf{w}^T\mathbf{x})\}I-\lambda I.
+                    %\intertext{Which is a diagonal matrix.}
+                    \end{split}
+                    \end{equation*}
+                    Which is a diagonal matrix.
+                    Here $g$ and $g'$ are the first and second derivatives of the non-quadratic function $G$, respectively. Now the updated $\mathbf{w}^+$ can be
+                     obtained using the Newton-Rapson method as follows:
+
+                    \begin{align*}         
+                    \mathbf{w}^+ & = \mathbf{w}- \frac{E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-\lambda \mathbf{w}}{E\{g'(\mathbf{w}^T\mathbf{x})\}-\lambda }
+                    \end{align*}
+                        
+                        Multiplying both sides by $[\lambda-E\{g'(\mathbf{w}^T\mathbf{x})\}$, we get:
+                        \begin{align*}
+                        \mathbf{w}^+ &= E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-E\{g'(\mathbf{w}^T\mathbf{x})\}\mathbf{w} 
+                        \label{ica_main_function}
+                        \end{align*}
+                        
+                        Since we have multiplied by the scalar $[\lambda-E\{g'(\mathbf{w}^T\mathbf{x})\}$, we normalize $\mathbf{w}^+$ vector as follows:
+                            $$\mathbf{w}^+=\frac{\mathbf{w}^+}{||\mathbf{w}^+||}.$$
+                    To find the solution of the Equation 
+                    \begin{align*}
+                        \mathbf{w}^+ &= E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-E\{g'(\mathbf{w}^T\mathbf{x})\}\mathbf{w} 
+                        \label{ica_main_function2}
+                        \end{align*}
+                    we can use the Newton-Rapson method or the Fixed-Point algorithm. 
+                    We can re-write the Equation as: 
+                            \begin{equation}
+                                \label{equation100}
+                                \mathbf{w}^+ - E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-E\{g'(\mathbf{w}^T\mathbf{x})\}\mathbf{w} =0
+                            \end{equation}
+                    Let us consider the left-hand side of the Equation \ref{equation100} is $f(\mathbf{w})$. So the Equation \ref{equation100} can be re-written as:
+                    $$
+                    f(\mathbf{w})=0
+                    $$
+                    $f(W)=0$ can be solved using the Newton-Rapson method. In that case, we need to find the inverse of the matrix $f(\mathbf{w})$ in each iteration, which is computationally expensive.
+                    
+                    On the other hand, the Fixed-Point iterative algorithm does not need to calculate the inverse of the matrix, it updates the weight vector $\mathbf{w}$, until Equation \ref{condition} is satisfied. 
+                    \begin{equation}
+                    \mathbf{w}^+=g(\mathbf{w})
+                    \label{condition}
+                    \end{equation}
+                    Where, $$g(\mathbf{w})=E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-E\{g'(\mathbf{w}^T\mathbf{x})\}\mathbf{w}$$
+                    In essence, the Fixed-Point algorithm makes the ICA faster. This is why, the above Equation \ref{condition} is called as FastICA.
+                    <h4>Summary of Estimating One IC</h4>
+                    \begin{align} \label{one_ic}
+                    \begin{split}
+                    \mathbf{w}^+ &= E\{\mathbf{x}g(\mathbf{w}^T\mathbf{x})\}-E\{g'(\mathbf{w}^T\mathbf{x})\}\mathbf{w} \\ 
+                    \mathbf{w}^+ &=\frac{\mathbf{w}^+}{||\mathbf{w}^+||}
+                    \end{split}
+                    \end{align}
+               
+
+                    By doing the above mentioned procedure, i.e., iterating through the Equation \ref{ica_main_function}, till it converges, i.e.,
+                     till the Equation \ref{condition} is satisfied, we get one weight vector $\mathbf{w}_1$, which gives one single independent component (IC).
+                    If we want to extract multiple components (suppose $p$ components) $\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3,.....,\mathbf{w}_p$,
+                     then we need to repeat the algorithm multiple times. We estimate the independent components one by one. We need to take care that
+                      several of these weight vectors will not converge to the same solution. 
+                      We must decorrelate $\mathbf{w}_1^T\mathbf{x},\mathbf{w}_2^T\mathbf{x},.....,\mathbf{w}_p^T\mathbf{x},$  after every iteration. 
+                      This decorrelation can be done by the Gram-Schmidt process (see gram_schmidt). When we need to estimate $p$ independent components or $p$ weight vectors
+                       $\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3,.....,\mathbf{w}_p$, we iterate through the Equation \ref{one_ic} for $\mathbf{w}_{p+1}$ times. After 
+                       every iteration, subtract  its projections on all the previous estimated vectors $\mathbf{w}_j, \: j=1,2,3,...,p$ from $\mathbf{w}_{p+1}$. 
+                       Then we normalize $\mathbf{w}_{p+1}$ by diving its magnitude.
+                            
+                    <section>
 
 
 
-						</ol> 
+
+                    </section>
+
+
+					</ol> 
 					</div>
 
 				
