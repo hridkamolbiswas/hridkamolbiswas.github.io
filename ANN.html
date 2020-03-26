@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>ANN</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" async
+			src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
+		</script>
+
+<style>
+	.responsive {
+	  width: 50%;
+	  height: auto;
+	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+	</style>
+
+
+</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<a href="index.html" ></a>
+			</header>
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">HOME</a></li>
+						
+					</ul>
+					<ul class="icons">
+						
+						<li><a href="https://github.com/hridkamolbiswas" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+				<div id="main">
+                <h1>Artificial Neural Network</h1>               
+                    <ul>In this section, we will discuss about :
+                        <li> Introduction</li>
+                        <li> An Artificial neuron</li>
+                        <li> Activation functions</li>
+                        <li> Architecture of a neural netwrok</li>
+                        <li> Training a neural network</li>
+                        <li> Gradient descent algorithm</li>
+                        <li> Backpropagation algorithm</li>
+                            
+                        </ul>
+                  
+				<ol>
+                    <section>
+                        <h2>Introduction</h2>
+                        In the human brain, a neuron receives strong signal (more than a threshold) through synapses, located on the dendrite.
+                         The neuron gets activated and passes the signal through a long, thin structure called axon, to the synapses of the other neurons. 
+                         The biological neuron's connection and working principal are very complex, but the mathematical model of an artificial neuron is much 
+                         more simplified. In Figure, the architecture of an artificial neuron is demonstrated.
+                        <div align="center"><img src="ANN_images/artificial_neuron.png" class="responsive" width="300" height="200">
+                            <figcaption>Figure : Architecture of an artificial neuron of the neural network. It receives input signals, then it processes the signals in the summing junction.
+                                 Before producing the final output, the output of the summing junction is passed through the activation function.</figcaption></div>
+                      </section>
+                
+                      <section>
+                        <h2>An Artificial neuron</h2>
+                        A neuron is a fundamental unit of a neural network. An artificial neuron has three basic components as shown in Figure above. These are:
+                        <ul>
+                            <li>Input unit</li>
+                            <li>Summing junction</li>
+                            <li>Activation function</li>
+                          </ul>  
+
+                        
+                    All the inputs are multiplied by the weights; a parameter to define the strength of the input signal. This action can be interpreted as the 
+                    action of the synapses of the biological neurons. The weighted input signals are summed up  and the bias term is added in a summing junction block.\par
+                    Consider a neuron's synapses receive a signal  $\mathbf{x}=[x_1,x_2,..........,x_n]^T$ of $n$-dimensions, which is multiplied 
+                    with the respective weight vector $\mathbf{w}=[w_1,w_2,..........,w_n]^T.$ If the bias term is defined by $b$; then the output of the summing junction can be written as:
+                    \begin{equation}
+                    s=\sum_{n=1}^{n} w_ix_i+b
+                    \label{summing_junction}
+                    \end{equation}
+
+                    The output of summing junction is passed through an activation function to get the output of a neuron:
+
+                    \begin{equation}
+                        Y=f(s)
+                    \label{activation_function_output}
+                    \end{equation}
+                    Where $f(.)$ is an activation function, which is used to limit the amplitude of the output of a neuron. The activation function is sometimes referred to as a squashing function, since it resists the amplitude of a neuron's output within a specific range, depending on the choice of the activation function.
+
+                      </section>
+
+
+
+                      <section>
+                        <h2>Activation functions</h2>
+                      </section>
+
+
+                      <section>
+                        <h2>Architecture of a neural netwrok</h2>
+                      </section>
+
+                      <section>
+                        <h2>Training a neural network</h2>
+                      </section>
+
+
+                      <section>
+                        <h2>Gradient descent algorithm</h2>
+                      </section>
+
+
+
+                      <section>
+                        <h2>Backpropagation algorithm</h2>
+                      </section>
+                    
+                </ol> 
+                </div>
+
+				
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; hridbiswas</li></ul>
+					</div>
+
+			</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+	</body>
+</html>
