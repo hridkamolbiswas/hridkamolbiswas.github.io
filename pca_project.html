@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Condition-invariant</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" async
+			src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
+		</script>
+
+<style>
+border {
+  background-color: lightgrey;
+  width: 500px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+  font-size: 25px;
+}
+
+	.responsive {
+	  width: 50%;
+	  height: auto;
+	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+	</style>
+
+
+</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<a href="index.html" ></a>
+			</header>
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li ><a href="index.html">Projects</a></li>
+						<li><a href="ANN.html">Artificial Neural Network</a></li>
+						<li><a href="ANN_training.html">Training Neural Network</a></li>
+						<!-- <li><a href="python_tutorial.html">Python Tutorials(will be updated soon)</a></li> -->
+						<li><a href="about_me.html">About me</a></li>
+						
+					</ul>
+					<ul class="icons">
+						
+						<li><a href="https://github.com/hridkamolbiswas" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+					<h3>Learning Condition-invariant Scene Representation using UNsupervised Algorithm</h3>
+					<ol>
+						<border>PROBLEM STATEMENT</border><br>
+						The appearance of a single place can look extremely different in different seasons as demonstrated in Figure 1. Hence it is a very challenging task to recognize the 
+						same place under different conditions, e.g., in different seasons.
+						
+						<br><br><br>
+					<div align="center"><img src="pca_images/nordland_4img.png" class="responsive" width="400" height="300">
+						<figcaption align="left"><b>Figure 1: The four images show the same place in four different seasons; winter, spring, summer, fall (from upper-left to the bottom-left in clockwise direction) 
+						. These images are taken from the nordland dataset,
+							 they illustrate the immense variations in the appearance of a scene in different seasons. Such changes in the appearance
+							  raise a severe challenge for an autonomous navigation system.</b>  </figcaption>
+					</div>	
+					<br>
+					<border>MOTIVATION</border><br>
+					This work is motivated from <i><b>Supervised and Unsupervised
+						Linear Learning Techniques for Visual Place Recognition in Changing Environments(IEEE Transactions on Robotics 32 (2016)).</b></i>
+
+					Their work showed that the PCA can be used to retrieve the robust representations of  the scenes by
+					 directly applying the PCA to the intensity images. The idea of this algorithm is demonstrated in Figure 2. 
+							 <div align="center"><img src="pca_images/PCA_variant_invariant.png" class="responsive" width="400" height="300">
+								<figcaption align="left"><b>Figure 2: First column: Two images from same locations of the two different seasons [Nordland dataset].<br>
+									Second column: Images are projected on first 100 principal components (PC's)<br>
+									Third column: Images are projected on second 100 principal components (PC's)</b>  </figcaption>
+							</div>
+							It shows that the condition dependent features of the scenes are associated with the first few principal components.
+							 So, by discarding the first few principal components and by choosing the subsequent principal components, the condition 
+							 independent or condition-invariant features can be learned.<br><br>	
+							
+					<border>WORKFLOW</border><br>
+					<div align="center"><img src="pca_images/PCA_workflow_new.png" class="responsive" width="400" height="300">
+						<figcaption align="left"><b>Figure 3: Workflow of the PCA approach. Blue arrows show the workflow of the test data.</b></figcaption>
+					</div>	
+						
+					<border>EVALUATION METRICS</border>
+					<br>
+					Algorithm is evaluated using the <b>precision-recall curves</b> and the <b>fraction of correct matches</b>. The correct matches are the <i>True Positives (TP)</i>, 
+					the incorrect matches are the <i>False Positives (FP)</i> and  when an algorithm mistakenly discards a correct match, that is labeled as the <i>false negative (FN)</i>  match. Since every scene in this dataset has a ground truth match, so there is no true negative (TN), every negative is a false negative (FN).
+<br>
+<b>Precision</b> is defined as the proportion of correct matches to the  total number of matches, i.e., correct and incorrect matches.
+ It implies the confidence of the predicted result of an algorithm. 
+ <br>
+<b>Recall</b> is defined as the proportion of the correct matches to the total number of actual matches. The definition of the precision and recall are given below. 
+ 
+\begin{equation}
+ Precision=\frac{TP}{TP+FP}
+ \label{equation_precision}
+\end{equation}
+\begin{equation}
+ Recall=\frac{TP}{TP+FN}
+ \label{equation_recall}
+\end{equation}
+<br><br>
+High precision refers to the low false positive rate and high recall refers to the low false negative rate. <br>
+The precision--recall curves are very useful evaluation measure in the place recognition model (in SLAM we call it In a loop-closure detection model), it is essential to
+avoid the false positives, because it means two images have been identified as a same place, i.e., it is a loop detection, but in reality, they are from two different locations.
+ This false prediction leads  the algorithm to produce the inconsistent map of its surroundings. As the name suggests, the precision--recall curve is a plot of the precision (in $y-axis)$ and recall (in $x-axis$) for the different pairs of the precision and recall values.  An ideal error-free model would be the one that reaches $100\%$ precision at $100\%$ recall. The precision--recall curves are generated by varying the  
+number of retrieved or matched images ranging from $1$ to the total number of the test images.
+<br><br>
+One more evaluation metric has been used, that is the fraction of correct matches. It is defined as the percentage of the number of times the best match the correct loop.
+$$\text{Fraction of correct matches}=\frac{\text{Number of correct predicted scenes}}
+{\text{Number of total evaluated scenes}} \times 100 \%$$
+
+
+						</ol> 
+
+
+					</div>
+
+				
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; hridbiswas</li></ul>
+					</div>
+
+			</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+	</body>
+</html>
